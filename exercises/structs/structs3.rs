@@ -4,7 +4,6 @@
 // Make the code compile and the tests pass!
 // If you have issues execute `rustlings hint structs3`
 
-// I AM NOT DONE
 
 #[derive(Debug)]
 struct Package {
@@ -16,7 +15,7 @@ struct Package {
 impl Package {
     fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -> Package {
         if weight_in_grams <= 0 {
-            throw Error
+            panic!("should panic");
         } else {
             return Package {
                 sender_country,
@@ -31,7 +30,7 @@ impl Package {
     }
 
     fn get_fees(&self, cents_per_gram: i32) -> i32 {
-        weight_in_grams * cents_per_gram
+        self.weight_in_grams * cents_per_gram
     }
 }
 
