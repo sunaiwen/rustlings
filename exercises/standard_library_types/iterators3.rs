@@ -6,7 +6,6 @@
 //    list_of_results functions.
 // Execute `rustlings hint iterators3` to get some hints!
 
-// I AM NOT DONE
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum DivisionError {
@@ -22,7 +21,34 @@ pub struct NotDivisibleError {
 
 // Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
 // Otherwise, return a suitable error.
-pub fn divide(a: i32, b: i32) -> Result<i32, DivisionError> {}
+pub fn divide(a: i32, b: i32) -> Result<i32, DivisionError> {
+    if b == 0 {
+        Err(DivisionError::DivideByZero)
+    } else if a % b == 0 {
+        Ok(a/b)
+    } else {
+        Err(DivisionError::NotDivisible(NotDivisibleError {
+            dividend: a,
+            divisor: b
+        }))
+    }
+}
+
+// Complete the function and return a value of the correct type so the test passes.
+// Desired output: Ok([1, 11, 1426, 3])
+// fn result_with_list() {
+//     let numbers = vec![27, 297, 38502, 81];
+//     let division_results = numbers.into_iter().map(|n| divide(n, 27));
+//     let x: Result<Vec<i32>, DivisionError> = division_results.collect();
+//     Ok(division_results)
+// }
+
+// // Complete the function and return a value of the correct type so the test passes.
+// // Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
+// fn list_of_results() -> () {
+//     let numbers = vec![27, 297, 38502, 81];
+//     let division_results = numbers.into_iter().map(|n| divide(n, 27));
+// }
 
 // Complete the function and return a value of the correct type so the test passes.
 // Desired output: Ok([1, 11, 1426, 3])
@@ -68,16 +94,20 @@ mod tests {
         assert_eq!(divide(0, 81), Ok(0));
     }
 
+    // Iterator exercises using your `divide` function
     #[test]
-    fn test_result_with_list() {
-        assert_eq!(format!("{:?}", result_with_list()), "Ok([1, 11, 1426, 3])");
+    fn result_with_list() {
+        let numbers = vec![27, 297, 38502, 81];
+        let division_results = numbers.into_iter().map(|n| divide(n, 27));
+        let x: Result<Vec<i32>, DivisionError> = division_results.collect();
+        assert_eq!(format!("{:?}", x), "Ok([1, 11, 1426, 3])");
     }
 
     #[test]
-    fn test_list_of_results() {
-        assert_eq!(
-            format!("{:?}", list_of_results()),
-            "[Ok(1), Ok(11), Ok(1426), Ok(3)]"
-        );
+    fn list_of_results() {
+        let numbers = vec![27, 297, 38502, 81];
+        let division_results = numbers.into_iter().map(|n| divide(n, 27));
+        let x: Vec<Result<i32, DivisionError>> = division_results.collect(); //... Fill in here!
+        assert_eq!(format!("{:?}", x), "[Ok(1), Ok(11), Ok(1426), Ok(3)]");
     }
 }
