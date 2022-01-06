@@ -37,7 +37,7 @@ pub fn create_empty_list() -> List {
 }
 
 pub fn create_non_empty_list() -> List {
-    Cons(1, Box::new(Cons(2, Box::new(Nil))))
+    List::Cons(1, Box::new(List::Nil))
 }
 
 #[cfg(test)]

@@ -5,16 +5,19 @@ mod delicious_snacks {
     pub use self::fruits::PEAR as fruit;
     pub use self::veggies::CUCUMBER as veggie;
 
-    mod fruits {
+    pub mod fruits {
         pub const PEAR: &'static str = "Pear";
         pub const APPLE: &'static str = "Apple";
     }
 
-    mod veggies {
+    pub mod veggies {
         pub const CUCUMBER: &'static str = "Cucumber";
         pub const CARROT: &'static str = "Carrot";
     }
 }
+
+use delicious_snacks::fruit;
+use delicious_snacks::veggies;
 
 fn main() {
     println!(
