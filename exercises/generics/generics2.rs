@@ -2,7 +2,7 @@
 // Rewrite it using generics so that it supports wrapping ANY type.
 
 struct Wrapper<T> {
-    value: T,
+    value: T
 }
 
 impl<T> Wrapper<T> {

@@ -8,18 +8,18 @@
 // to support alphabetical report cards. Change the Grade in the second test to "A+"
 // to show that your changes allow alphabetical grades.
 
-// Execute 'rustlings hint generics3' for hints!
-
 pub struct ReportCard<T> {
     pub grade: T,
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl<T: std::fmt::Display> ReportCard<T> {
+impl <T: std::fmt::Display> ReportCard<T> {
     pub fn print(&self) -> String {
-        format!("{} ({}) - achieved a grade of {}",
-            &self.student_name, &self.student_age, &self.grade)
+        format!(
+            "{} ({}) - achieved a grade of {}",
+            &self.student_name, &self.student_age, &self.grade
+        )
     }
 }
 
@@ -45,7 +45,7 @@ mod tests {
         // TODO: Make sure to change the grade here after you finish the exercise.
         let report_card = ReportCard {
             grade: "A+",
-            student_name: "Gary Plotter".to_string(),
+            student_name: "Gary Plotter".to_string(), 
             student_age: 11,
         };
         assert_eq!(
